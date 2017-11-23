@@ -13,9 +13,10 @@ dans la ```<div class="carousel-inner" role="listbox">``` il suffit de rajouter 
 
 ```<div class="carousel-item"> <img class="d-block logo" src="logo/SWLH_Partner_CONTAINER.png" alt="Second slide"></div>```
 
-pour changer la vitesse, il faut changer la valeur de l'intervalle: ```$('.carousel').carousel({
-                                                                             interval: 2000
-                                                                         })```
+pour changer la vitesse, il faut changer la valeur de l'intervalle: ```javascript 
+$('.carousel').carousel({
+    interval: 2000
+})```
 **la musique de fin**
 
 pour définir la musique , il faut changer l'attribut `src` dans `<audio id="arret" src="Je_vous_demande_de_vous_arreter.mp3"></audio>`
