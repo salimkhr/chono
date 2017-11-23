@@ -39,3 +39,5 @@ pour définir la musique , il faut changer l'attribut `src` dans
 ```html
 <audio id="arret" src="Je_vous_demande_de_vous_arreter.mp3"></audio>
 ```
+
+_utilisé pendant le starup weekend du 17-19 novembre au Havre_
