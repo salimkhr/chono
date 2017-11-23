@@ -1,9 +1,8 @@
 # chono-SWLH
-#syntax.highlighter.text/javascript.executables=node
 **Modifier la durée :**
 
-la variable `temps` permet de definir la duré du chronométre.
-par exemple pour 2 min
+la variable `temps` permet de definir la durée du chronométre.
+Par exemple pour 2 min
 ```javascript
 var temps = 2;
 ```
