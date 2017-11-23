@@ -1,12 +1,13 @@
 # chono-SWLH
 **Modifier la durée :**
 
-la variable `temps` permet de definir la durée du chronométre.
-Par exemple pour 2 min
+la variable `temps` permet de définir la durée du chronomètre.
+
+Par exemple pour 2 min :
 ```javascript
 var temps = 2;
 ```
-ou pour 1min 30 
+ou pour 1min 30 :
 ```javascript
 var temps = 1.50;
 ```
@@ -18,7 +19,7 @@ dans la
 ```html
 <div class="carousel-inner" role="listbox">
 ```
-il suffit de rajouter pour chaque sponsors 
+il suffit de rajouter pour chaque sponsor
 
 ```html
 <div class="carousel-item">
@@ -26,7 +27,7 @@ il suffit de rajouter pour chaque sponsors
 </div>
 ```
 
-pour changer la vitesse, il faut changer la valeur de l'intervalle: 
+pour changer la vitesse, il faut changer la valeur de l'interval: 
 ```javascript 
 $('.carousel').carousel({
     interval: 2000
