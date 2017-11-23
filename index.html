@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chrono</title>
+    <style>
+        .display-1 {
+            font-size: 20rem!important;
+            font-weight: 300;
+            line-height: 1.1;
+        }
+        .logo
+        {
+            width: 100%;
+            height: 25%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="row justify-content-center" style="margin-top: 1vh;margin: 0;">
+    <div class="col-md-5">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_CONTAINER.png" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_CCI.png" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_EM_INSIDE.png" alt="Second slide">
+                </div>
+                <div class="carousel-item active">
+                    <img class="d-block logo" src="logo/SWLH_Partner_AMCEN.png" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_CESI.png" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_COHIN.png" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_FIDAL.png" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_GreenResearch.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_NFT.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_OPTEAM.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_PTES.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_S2F.png" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block logo" src="logo/SWLH_Partner_VDMMA.png" alt="Third slide">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-10">
+        <div id="chronometre" class="text-center">
+            <span class="display-1">00:00</span>
+        </div>
+    </div>
+
+    <div class="col-md-10">
+        <p class="text-center">
+            <a href="#!" class="text-center btn btn-primary" id="btn-lancer">Lancer</a>
+            <a href="#!" class="text-center btn btn-danger" id="btn-stop">Stop</a>
+            <a href="#!" class="text-center btn btn-warning" id="btn-reset">Reset</a>
+        </p>
+    </div>
+
+    <audio id="arret" src="Je_vous_demande_de_vous_arreter.mp3"></audio>
+</div>
+</div>
+<script>
+    var temps = 1;
+
+    var tempsEcoule = temps*60;
+    var tempsDeb = temps*60;
+    var play=false;
+    var intervalID = null;
+
+    $('#btn-stop').click(function(){
+        window.clearInterval(intervalID);
+        intervalID = null;
+        play=false;
+    });
+
+    $('#btn-lancer').click(function(){
+
+        if(!intervalID) {
+            intervalID = window.setInterval(function(){
+                if(tempsEcoule>0)
+                    tempsEcoule--;
+                else if(!play)
+                {
+                    $("#arret").get(0).play();
+                    play = true;
+                }
+                var tempsEcouleFormate = formatSecondes(tempsEcoule);
+                if(tempsEcoule > 10)
+                    $('#chronometre span').html(tempsEcouleFormate).addClass("text-success");
+                else if(tempsEcoule > 10)
+                    $('#chronometre span').html(tempsEcouleFormate).removeClass("text-success").addClass("text-warning");
+                else
+                    $('#chronometre span').html(tempsEcouleFormate).removeClass("text-warning").addClass("text-danger");
+            }, 1000);
+        }
+
+    });
+
+    $('#btn-reset').click(function(){
+        tempsEcoule = temps*60;
+        $('#chronometre span').html("00:00").removeClass("text-success").removeClass("text-warning").removeClass("text-danger");
+        play=false;
+    });
+
+    function formatSecondes(nombre){
+        var date = new Date(nombre*1000);
+        return (date.getMinutes()>9?date.getMinutes():"0"+date.getMinutes())+":"+(date.getSeconds()>9?date.getSeconds():"0"+date.getSeconds());
+    }
+
+
+    $('.carousel').carousel({
+        interval: 2000
+    })
+</script>
+</body>
+</html>
